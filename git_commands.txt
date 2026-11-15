@@ -1,0 +1,103 @@
+GIT COMMANDS USED IN THIS ASSIGNMENT
+=====================================
+Project: git-workflow-assignment
+Repository: https://github.com/gauri0508/git-workflow-assignment
+
+--- Step 1: Local Repository Setup ---
+
+mkdir git-workflow-assignment
+    Creates the project folder on the local machine.
+
+cd git-workflow-assignment
+    Moves into the project folder so that all Git commands run inside it.
+
+git init
+    Initializes a new, empty Git repository in the current folder (creates the hidden .git directory).
+
+git branch -M main
+    Renames the current (default) branch to "main" so that the primary branch is called main.
+
+git status
+    Shows the state of the working directory and staging area (tracked, untracked, modified, staged files).
+
+--- Step 2: Git Workflow Execution ---
+
+git add index.html about.html
+    Stages the listed files so that their current contents are included in the next commit.
+
+git commit -m "<message>"
+    Records a snapshot of the staged changes in the repository history with a descriptive message.
+
+git log --oneline
+    Displays the commit history in a compact one-line-per-commit format (short hash + message).
+
+git diff
+    Shows the line-by-line differences between the working directory and the last commit / staging area.
+
+git branch feature
+    Creates a new branch named "feature" pointing at the current commit (does not switch to it).
+
+git branch
+    Lists all local branches and marks the currently checked-out branch with an asterisk (*).
+
+git checkout feature
+    Switches the working directory to the "feature" branch so new commits go to that branch.
+
+git checkout main
+    Switches back to the "main" branch.
+
+git merge --no-ff feature -m "<message>"
+    Merges the "feature" branch into the current branch (main). --no-ff forces a merge commit so the
+    branch activity is clearly visible in the history.
+
+git log --oneline --graph --all --decorate
+    Shows the commit history of all branches as an ASCII graph with branch/tag labels.
+
+git log
+    Shows the full commit history with hash, author, date and message for every commit.
+
+--- Step 3: .gitignore Implementation ---
+
+git status --ignored
+    Shows the normal status plus the list of files/folders that are being ignored by .gitignore.
+
+git add .gitignore
+    Stages the .gitignore file so that the ignore rules are version-controlled.
+
+git commit -m "Add .gitignore ..."
+    Commits the .gitignore file to the repository.
+
+--- Step 4: Undo Operation ---
+
+git revert --no-edit HEAD
+    Undoes the last commit (HEAD) by creating a new commit that reverses its changes. The original
+    commit stays in history, so this is the safe way to undo a commit that may be shared/pushed.
+    (Alternative: "git reset --soft HEAD~1" removes the last commit but keeps its changes staged;
+    "git reset --hard HEAD~1" removes the commit and discards its changes completely.)
+
+--- Step 5: GitHub Integration ---
+
+gh repo create git-workflow-assignment --public
+    Creates a new public repository on GitHub using the GitHub CLI (the same thing can be done on
+    github.com -> New repository -> Public, without adding a README).
+
+git remote add origin https://github.com/gauri0508/git-workflow-assignment.git
+    Links the local repository to the remote GitHub repository under the name "origin".
+
+git remote -v
+    Lists the configured remotes and their fetch/push URLs to verify the connection.
+
+git push -u origin main
+    Uploads the main branch and all its commits to GitHub and sets origin/main as the upstream so
+    future "git push"/"git pull" commands need no arguments.
+
+git push origin feature
+    Uploads the feature branch to GitHub so the branch activity is visible on the remote as well.
+
+--- Step 6: Command Documentation File ---
+
+git add git_commands.txt
+    Stages this documentation file.
+
+git commit -m "Add git_commands.txt"
+    Commits the documentation file so it is part of the repository on GitHub.
